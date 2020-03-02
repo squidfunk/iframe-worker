@@ -52,6 +52,7 @@ jobs:
 
       # Run linter and build distribution files
       - run: npm run lint
+      - run: npm run build
       - run: npm run test
 
   # Publish Python package and Docker image
