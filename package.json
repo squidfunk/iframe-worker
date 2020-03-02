@@ -7,7 +7,7 @@
     "polyfill",
     "iframe"
   ],
-  "homepage": "https://squidfunk.github.io/iframe-worker/",
+  "homepage": "https://github.com/squidfunk/iframe-worker",
   "bugs": {
     "url": "https://github.com/squidfunk/iframe-worker/issues",
     "email": "martin.donath@squidfunk.com"
