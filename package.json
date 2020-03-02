@@ -1,6 +1,6 @@
 {
   "name": "iframe-worker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A tiny WebWorker polyfill for the file:// protocol",
   "keywords": [
     "webworker",
@@ -23,7 +23,8 @@
     "url": "https://github.com/squidfunk/iframe-worker.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "polyfill"
   ],
   "main": "dist/cjs",
   "module": "dist/esm",
