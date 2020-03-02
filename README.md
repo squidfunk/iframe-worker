@@ -1,5 +1,7 @@
 # iframe-worker
 
+[![Join the chat at https://gitter.im/squidfunk/iframe-worker](https://badges.gitter.im/squidfunk/iframe-worker.svg)](https://gitter.im/squidfunk/iframe-worker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A tiny WebWorker polyfill for the `file://` protocol
 
 _Think [pseudo-worker][1] but using an `iframe` instead of `XMLHTTPRequest`.
