@@ -2,10 +2,20 @@
 
 A tiny WebWorker polyfill for the `file://` protocol
 
+Think [pseudo-worker][1] but using an `iframe` instead of `XMLHTTPRequest`.
+This polyfill should be mostly spec-compliant and supports `importScripts`.
+It should pretty much be a drop-in replacement.
+
 ## Installation
 
 ``` sh
 npm install iframe-worker
+```
+
+## Usage
+
+``` html
+<script src="https://unpkg.com/iframe-worker"></script>
 ```
 
 ## License
@@ -31,3 +41,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
+
+  [1]: https://github.com/nolanlawson/pseudo-worker
