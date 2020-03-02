@@ -28,6 +28,7 @@
 # Distribution files
 /dist
 /package
+/polyfill
 /*.tgz
 
 # Coverage reports

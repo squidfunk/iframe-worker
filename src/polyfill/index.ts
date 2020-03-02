@@ -31,3 +31,11 @@ declare global {
     IFrameWorker: IFrameWorker
   }
 }
+
+/* ----------------------------------------------------------------------------
+ * Polyfill
+ * ------------------------------------------------------------------------- */
+
+/* istanbul ignore next */
+if (location.protocol === "file:")
+  window.Worker = IFrameWorker

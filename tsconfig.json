@@ -3,7 +3,6 @@
     "alwaysStrict": true,
     "baseUrl": "src",
     "declaration": true,
-    "declarationDir": "dist",
     "declarationMap": true,
     "lib": [
       "dom"
@@ -16,7 +15,6 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist",
     "removeComments": false,
     "resolveJsonModule": true,
     "sourceMap": true,
@@ -25,7 +23,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-    "target": "es5"
+    "target": "es2017"
   },
   "include": [
     "src",

@@ -25,7 +25,8 @@
   "files": [
     "dist"
   ],
-  "main": "dist/bundle/index.js",
+  "main": "dist/cjs",
+  "module": "dist/esm",
   "scripts": {
     "build": "make build",
     "clean": "make clean",

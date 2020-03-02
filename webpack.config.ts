@@ -40,7 +40,7 @@ export default (_env: never, args: Configuration) => {
     mode: args.mode,
 
     /* Entrypoint */
-    entry: "src",
+    entry: "src/polyfill",
 
     /* Loaders */
     module: {
@@ -54,8 +54,10 @@ export default (_env: never, args: Configuration) => {
               loader: "ts-loader",
               options: {
                 compilerOptions: {
-                  module: "es2015",
-                  target: "es2015"
+                  declaration: false,
+                  declarationMap: false,
+                  module: "commonjs",
+                  target: "es5"
                 }
               }
             }
@@ -67,7 +69,7 @@ export default (_env: never, args: Configuration) => {
 
     /* Export class constructor as entrypoint */
     output: {
-      path: path.resolve(__dirname, "dist/bundle"),
+      path: path.resolve(__dirname, "polyfill"),
       pathinfo: false,
       filename: "index.js",
       libraryTarget: "window"

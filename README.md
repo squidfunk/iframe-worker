@@ -14,8 +14,22 @@ npm install iframe-worker
 
 ## Usage
 
+You can either use `iframe-worker` programmatically:
+
+``` js
+import { IFrameWorker } from "iframe-worker"
+```
+
+... or use the polyfill which automatically mounts on `file://` locations:
+
+``` js
+import "iframe-worker/polyfill"
+```
+
+... or use [unpkg.com](https://unpkg.com) __(recommended)__:
+
 ``` html
-<script src="https://unpkg.com/iframe-worker"></script>
+<script src="https://unpkg.com/iframe-worker/polyfill"></script>
 ```
 
 ## License

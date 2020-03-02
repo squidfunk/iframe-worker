@@ -26,9 +26,16 @@ all: clean lint build test
 # Targets
 # -----------------------------------------------------------------------------
 
-# Distribution files
-dist: src .FORCE
-	npx tsc
+# Distribution files: CommonJS
+dist/cjs: src
+	npx tsc -i --outDir $@ -m commonjs
+
+# Distribution files: ESM
+dist/esm: src
+	npx tsc -i --outDir $@ -m es2015
+
+# Distribution files: polyfill
+polyfill: src
 	npx webpack --mode production
 
 # -----------------------------------------------------------------------------
@@ -36,11 +43,11 @@ dist: src .FORCE
 # -----------------------------------------------------------------------------
 
 # Build distribution files
-build: dist
+build: dist/cjs dist/esm polyfill
 
 # Clean distribution files
 clean:
-	rm -rf coverage dist
+	rm -rf coverage dist polyfill
 
 # Lint source files
 lint:
