@@ -1,3 +1,17 @@
+[![Github Action][action-image]][action-link]
+[![Codecov][codecov-image]][codecov-link]
+[![Gitter][gitter-image]][gitter-link]
+[![npm][npm-image]][npm-link]
+
+  [action-image]: https://github.com/squidfunk/iframe-worker/workflows/ci/badge.svg?branch=master
+  [action-link]: https://github.com/squidfunk/iframe-worker/actions
+  [codecov-image]: https://img.shields.io/codecov/c/github/squidfunk/iframe-worker/master.svg
+  [codecov-link]: https://codecov.io/gh/squidfunk/iframe-worker
+  [gitter-image]: https://badges.gitter.im/squidfunk/iframe-worker.svg
+  [gitter-link]: https://gitter.im/squidfunk/iframe-worker
+  [npm-image]: https://img.shields.io/npm/v/iframe-worker.svg
+  [npm-link]: https://npmjs.com/package/iframe-worker
+
 # iframe-worker
 
 A tiny WebWorker polyfill for the `file://` protocol
@@ -27,7 +41,7 @@ import { IFrameWorker } from "iframe-worker"
 import "iframe-worker/polyfill"
 ```
 
-... or use [unpkg.com](https://unpkg.com) __(recommended)__:
+... or use the polyfill from [unpkg.com](https://unpkg.com) __(recommended)__:
 
 ``` html
 <script src="https://unpkg.com/iframe-worker/polyfill"></script>
