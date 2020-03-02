@@ -86,5 +86,6 @@ jobs:
       # Run build and publish to NPM
       - run: npm run build
       - env:
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish
