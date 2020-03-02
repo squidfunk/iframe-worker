@@ -1,0 +1,65 @@
+{
+  "chrome": {
+    "base": "SauceLabs",
+    "browserName": "chrome",
+    "version": "latest",
+    "platform": "Windows 7",
+    "screenResolution": "1280x1024"
+  },
+  "chrome1": {
+    "base": "SauceLabs",
+    "browserName": "chrome",
+    "version": "latest-1",
+    "platform": "Windows 7",
+    "screenResolution": "1280x1024"
+  },
+  "firefox": {
+    "base": "SauceLabs",
+    "browserName": "firefox",
+    "version": "latest",
+    "platform": "Windows 7",
+    "screenResolution": "1280x1024"
+  },
+  "firefox1": {
+    "base": "SauceLabs",
+    "browserName": "firefox",
+    "version": "latest-1",
+    "platform": "Windows 7",
+    "screenResolution": "1280x1024"
+  },
+  "edge15": {
+    "base": "SauceLabs",
+    "browserName": "MicrosoftEdge",
+    "version": "15",
+    "platform": "Windows 10",
+    "screenResolution": "1280x1024"
+  },
+  "edge14": {
+    "base": "SauceLabs",
+    "browserName": "MicrosoftEdge",
+    "version": "14",
+    "platform": "Windows 10",
+    "screenResolution": "1280x1024"
+  },
+  "edge13": {
+    "base": "SauceLabs",
+    "browserName": "MicrosoftEdge",
+    "version": "13",
+    "platform": "Windows 10",
+    "screenResolution": "1280x1024"
+  },
+  "ie11": {
+    "base": "SauceLabs",
+    "browserName": "internet explorer",
+    "version": "11",
+    "platform": "Windows 10",
+    "screenResolution": "1280x1024"
+  },
+  "ie10": {
+    "base": "SauceLabs",
+    "browserName": "internet explorer",
+    "version": "10",
+    "platform": "Windows 8",
+    "screenResolution": "1280x1024"
+  }
+}
