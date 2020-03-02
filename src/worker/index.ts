@@ -197,3 +197,11 @@ export class IFrameWorker implements Worker {
     }
   }
 }
+
+/* ----------------------------------------------------------------------------
+ * Polyfill
+ * ------------------------------------------------------------------------- */
+
+/* istanbul ignore next */
+if (location.protocol === "file:")
+  window.Worker = IFrameWorker

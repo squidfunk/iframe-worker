@@ -5,7 +5,6 @@
     "declaration": true,
     "declarationDir": "dist",
     "declarationMap": true,
-    "esModuleInterop": true,
     "lib": [
       "dom"
     ],
