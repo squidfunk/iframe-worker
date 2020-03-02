@@ -96,7 +96,7 @@ export class IFrameWorker implements Worker {
         <body>
           <script>
             postMessage = parent.postMessage.bind(parent)
-            importScripts = ${importScripts.toString()}
+            importScripts = ${importScripts}
             addEventListener("error", ev => {
               parent.dispatchEvent(new ErrorEvent("error", {
                 filename: "${this.url}",
