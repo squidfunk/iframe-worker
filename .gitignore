@@ -28,6 +28,7 @@
 # Distribution files
 /dist
 /package
+/*.tgz
 
 # Coverage reports
 /coverage

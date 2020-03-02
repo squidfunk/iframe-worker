@@ -1,7 +1,7 @@
 {
   "name": "iframe-worker",
   "version": "0.1.0",
-  "description": "A tiny and mostly spec-compliant WebWorker polyfill",
+  "description": "A tiny WebWorker polyfill for the file:// protocol",
   "keywords": [
     "webworker",
     "polyfill",
@@ -23,6 +23,10 @@
     "type": "git",
     "url": "https://github.com/squidfunk/iframe-worker.git"
   },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/bundle/index.js",
   "scripts": {
     "build": "make build",
     "clean": "make clean",
