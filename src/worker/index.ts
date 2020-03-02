@@ -96,13 +96,13 @@ export class IFrameWorker implements Worker {
         <body>
           <script>
             postMessage = parent.postMessage.bind(parent)
+            importScripts = ${importScripts.toString()}
             addEventListener("error", ev => {
               parent.dispatchEvent(new ErrorEvent("error", {
                 filename: "${this.url}",
                 error: ev.error
               }))
             })
-            ${importScripts}
           </script>
           <script src="${url}"></script>
         </body>

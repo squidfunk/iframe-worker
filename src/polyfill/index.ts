@@ -28,7 +28,7 @@ import { IFrameWorker } from "../worker"
 
 declare global {
   interface Window {
-    IFrameWorker: IFrameWorker
+    IFrameWorker: typeof IFrameWorker
   }
 }
 
@@ -37,5 +37,6 @@ declare global {
  * ------------------------------------------------------------------------- */
 
 /* istanbul ignore next */
+window.IFrameWorker = IFrameWorker
 if (location.protocol === "file:")
   window.Worker = IFrameWorker
