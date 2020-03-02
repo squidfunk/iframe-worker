@@ -113,8 +113,8 @@ export function saucelabs(
     /* Configure SauceLabs integration */
     concurrency: 5,
     sauceLabs: {
-      build: process.env.GITHUB_RUN_ID,
-      testName: process.env.CI
+      build: process.env.GITHUB_ACTIONS,
+      testName: process.env.GITHUB_RUN_ID
         ? `${process.env.GITHUB_RUN_ID}`
         : `~ #${generate().dashed}`,
       recordVideo: false,
