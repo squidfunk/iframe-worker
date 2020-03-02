@@ -31,6 +31,7 @@
     "build": "make build",
     "clean": "make clean",
     "lint": "make lint",
+    "test": "make test",
     "watch": "make watch"
   },
   "devDependencies": {

@@ -29,6 +29,6 @@ importScripts(
   "base/workers/script-import-b.js"
 )
 
-addEventListener("message", () => {
+addEventListener("message", function() {
   postMessage(a + b)
 })

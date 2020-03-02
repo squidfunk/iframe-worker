@@ -24,6 +24,6 @@
  * Worker
  * ------------------------------------------------------------------------- */
 
-addEventListener("message", () => {
+addEventListener("message", function() {
   postMessage("pong")
 })

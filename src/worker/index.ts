@@ -123,9 +123,11 @@ export class IFrameWorker implements Worker {
    * Immediately terminate the worker
    */
   public terminate() {
+    document.body.removeChild(this.iframe)
+
+    /* Unregister internal listeners */
     window.removeEventListener("message", this.handleMessage)
     window.onerror = null
-    this.iframe.remove()
   }
 
   /**

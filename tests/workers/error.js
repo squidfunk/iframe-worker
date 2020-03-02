@@ -24,6 +24,6 @@
  * Worker
  * ------------------------------------------------------------------------- */
 
-addEventListener("message", () => {
+addEventListener("message", function() {
   throw new Error("Error in worker")
 })
