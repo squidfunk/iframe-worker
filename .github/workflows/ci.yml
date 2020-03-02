@@ -73,6 +73,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10.x
+          registry-url: https://registry.npmjs.org
 
       - uses: actions/cache@v1
         id: cache-node
@@ -86,6 +87,5 @@ jobs:
       # Run build and publish to NPM
       - run: npm run build
       - env:
-          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish
