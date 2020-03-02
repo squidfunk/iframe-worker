@@ -4,7 +4,8 @@ A tiny WebWorker polyfill for the `file://` protocol
 
 _Think [pseudo-worker][1] but using an `iframe` instead of `XMLHTTPRequest`.
 This polyfill should be mostly spec-compliant and even supports `importScripts`.
-It should pretty much be a drop-in replacement, at least for modern browsers._
+It should pretty much be a drop-in replacement, at least for modern browsers
+which include a constructable `EventTarget` and `Promise`._
 
 ## Installation
 
