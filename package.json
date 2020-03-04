@@ -29,11 +29,16 @@
   "main": "dist/cjs",
   "module": "dist/esm",
   "scripts": {
-    "build": "make build",
-    "clean": "make clean",
-    "lint": "make lint",
-    "test": "make test",
-    "watch": "make watch"
+    "build": "npx run-p build:cjs build:esm build:polyfill",
+    "build:cjs": "npx tsc -i --outDir dist/cjs -m commonjs",
+    "build:esm": "npx tsc -i --outDir dist/esm -m es2015",
+    "build:polyfill": "npx webpack --mode production",
+    "clean": "npx rimraf dist polyfill",
+    "lint": "npx run-p lint:src && npm run lint:tests",
+    "lint:src": "npx tslint -p tsconfig.json 'src/**/*.ts'",
+    "lint:tests": "npx tslint -p tests/tsconfig.json 'tests/**/*.ts'",
+    "test": "( cd tests; TS_NODE_FILES=1 npx karma start karma.conf.ts --single-run)",
+    "watch": "( cd tests; TS_NODE_FILES=1 npx karma start karma.conf.ts )"
   },
   "devDependencies": {
     "@types/chance": "^1.0.8",
@@ -55,6 +60,7 @@
     "karma-spec-reporter": "^0.0.32",
     "karma-summary-reporter": "^1.7.2",
     "karma-webpack": "^4.0.2",
+    "npm-run-all": "^4.1.5",
     "project-name-generator": "^2.1.7",
     "rimraf": "^3.0.2",
     "ts-loader": "^6.2.1",
