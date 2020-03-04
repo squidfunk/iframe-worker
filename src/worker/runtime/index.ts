@@ -29,7 +29,7 @@
  *
  * @param urls - Scripts to import
  */
-export function importScripts(...urls: string[]) {
+export function importScripts(...urls: string[]): void {
   for (const url of urls) {
     const script = document.createElement("script")
     script.src = url

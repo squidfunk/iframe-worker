@@ -122,7 +122,7 @@ export class IFrameWorker implements Worker {
   /**
    * Immediately terminate the worker
    */
-  public terminate() {
+  public terminate(): void {
     document.body.removeChild(this.iframe)
 
     /* Unregister internal listeners */
@@ -135,7 +135,7 @@ export class IFrameWorker implements Worker {
    *
    * @param data - Message data
    */
-  public postMessage(data: any) {
+  public postMessage(data: any): void {
     this.ready
       .catch()
       .then(() => {
@@ -165,7 +165,7 @@ export class IFrameWorker implements Worker {
    *
    * @param ev - Message event
    */
-  protected handleMessage = (ev: MessageEvent) => {
+  protected handleMessage = (ev: MessageEvent): void => {
     if (ev.source === this.worker) {
       ev.stopImmediatePropagation()
       this.dispatchEvent(new MessageEvent("message", { data: ev.data }))
@@ -187,7 +187,7 @@ export class IFrameWorker implements Worker {
     message?: string, filename?: string,
     lineno?: number, colno?: number,
     error?: Error
-  ) => {
+  ): void => {
     /* istanbul ignore else: will terminate jasmine */
     if (filename === this.url.toString()) {
       const ev = new ErrorEvent("error", {
