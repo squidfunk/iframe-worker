@@ -1,6 +1,6 @@
 {
   "name": "iframe-worker",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A tiny WebWorker polyfill for the file:// protocol",
   "keywords": [
     "webworker",

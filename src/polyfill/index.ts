@@ -36,7 +36,6 @@ declare global {
  * Polyfill
  * ------------------------------------------------------------------------- */
 
-/* istanbul ignore next */
 window.IFrameWorker = IFrameWorker
 if (location.protocol === "file:")
   window.Worker = IFrameWorker

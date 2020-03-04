@@ -59,7 +59,7 @@ export class IFrameWorker implements Worker {
   public onmessage: Worker["onmessage"] = null
 
   /**
-   * The iframe we'll use to simulate a worker
+   * The `iframe` we'll use to simulate a worker
    */
   public iframe: HTMLIFrameElement
 
