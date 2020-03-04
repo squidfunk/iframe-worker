@@ -27,7 +27,12 @@
 /**
  * Import one or more scripts into the worker's scope
  *
- * @param urls - Scripts to import
+ * Note that due to JavaScript's event-driven nature `importScripts` cannot be
+ * synchronous. This means that all symbols that are exported from a script
+ * which is being imported may only be safely accessed in the message handler,
+ * but not in the worker's global scope.
+ *
+ * @param urls - Script URLs to import
  */
 export function importScripts(...urls: string[]): void {
   for (const url of urls) {

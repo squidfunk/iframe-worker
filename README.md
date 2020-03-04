@@ -20,7 +20,7 @@
 A tiny WebWorker polyfill for the `file://` protocol
 
 _Think [pseudo-worker][1] but using an `iframe` instead of `XMLHTTPRequest`.
-This polyfill should be mostly spec-compliant and even supports `importScripts`.
+This polyfill should be mostly spec-compliant and supports `importScripts`.
 It should pretty much be a drop-in replacement, at least for modern browsers
 which include a constructable `EventTarget` and `Promise`._
 
@@ -49,6 +49,13 @@ import "iframe-worker/polyfill"
 ``` html
 <script src="https://unpkg.com/iframe-worker/polyfill"></script>
 ```
+
+## Caveats
+
+Note that due to JavaScript's event-driven nature `importScripts` cannot be
+synchronous. This means that all symbols that are exported from a script which
+is being imported may only be safely accessed in the message handler, but not
+in the worker's global scope.
 
 ## License
 
