@@ -30,8 +30,8 @@
   "module": "dist/esm",
   "scripts": {
     "build": "npx run-p build:cjs build:esm build:polyfill",
-    "build:cjs": "npx tsc -i --outDir dist/cjs -m commonjs",
-    "build:esm": "npx tsc -i --outDir dist/esm -m es2015",
+    "build:cjs": "npx tsc --outDir dist/cjs -m commonjs",
+    "build:esm": "npx tsc --outDir dist/esm -m es2015",
     "build:polyfill": "npx webpack --mode production",
     "clean": "npx rimraf dist polyfill",
     "lint": "npx run-p lint:src && npm run lint:tests",
