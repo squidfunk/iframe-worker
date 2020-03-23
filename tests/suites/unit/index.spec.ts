@@ -47,7 +47,6 @@ describe("worker", () => {
       worker.terminate()
       expect(worker.iframe.parentNode)
         .toBeNull()
-      worker.postMessage("aaa")
     })
 
     /* Test: should delegate event handling */
@@ -78,7 +77,8 @@ describe("worker", () => {
       const worker = new IFrameWorker("base/workers/message.js")
       worker.postMessage("ping")
       worker.onmessage = message => {
-        expect(message.data).toEqual("pong")
+        expect(message.data)
+          .toEqual("pong")
         done()
       }
     })
@@ -88,7 +88,8 @@ describe("worker", () => {
       const worker = new IFrameWorker("base/workers/error.js")
       worker.postMessage(chance.string())
       worker.addEventListener("error", ({ error }) => {
-        expect(error.message).toEqual("Error in worker")
+        expect(error.message)
+          .toEqual("Error in worker")
         done()
       })
     })
@@ -98,7 +99,8 @@ describe("worker", () => {
       const worker = new IFrameWorker("base/workers/error.js")
       worker.postMessage(chance.string())
       worker.onerror = ({ error }) => {
-        expect(error.message).toEqual("Error in worker")
+        expect(error.message)
+          .toEqual("Error in worker")
         done()
       }
     })
@@ -108,7 +110,8 @@ describe("worker", () => {
       const worker = new IFrameWorker("base/workers/scripts.js")
       worker.postMessage(chance.string())
       worker.addEventListener("message", message => {
-        expect(message.data).toEqual("foobar")
+        expect(message.data)
+          .toEqual("foobar")
         done()
       })
     })
