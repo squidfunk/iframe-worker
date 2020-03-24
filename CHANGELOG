@@ -1,3 +1,7 @@
+iframe-worker-0.1.5 (2020-03-24)
+
+  * Removed build files from package
+
 iframe-worker-0.1.4 (2020-03-04)
 
   * Fixed arrow function in polyfill runtime
