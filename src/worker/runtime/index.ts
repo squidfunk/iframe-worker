@@ -28,16 +28,22 @@
  * Import one or more scripts into the worker's scope
  *
  * Note that due to JavaScript's event-driven nature `importScripts` cannot be
- * synchronous. This means that all symbols that are exported from a script
- * which is being imported may only be safely accessed in the message handler,
- * but not in the worker's global scope.
+ * synchronous. For this reason, we diverge from the official spec here and
+ * return a `Promise`, which is fulfilled when the scripts have loaded. The
+ * caller can `await` the `Promise` to ensure that the scripts have loaded.
  *
  * @param urls - Script URLs to import
+ *
+ * @return Promise returning with no result
  */
-export function importScripts(...urls: string[]): void {
-  for (const url of urls) {
+export function importScripts(...urls: string[]): Promise<void> {
+  return Promise.all(urls.map(url => new Promise(resolve => {
     const script = document.createElement("script")
     script.src = url
+    script.addEventListener("load", () => resolve)
     document.body.appendChild(script)
-  }
+  })))
+    .then(() => {
+      /* Return nothing */
+    })
 }
