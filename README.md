@@ -52,10 +52,12 @@ import "iframe-worker/polyfill"
 
 ## Caveats
 
-Note that due to JavaScript's event-driven nature `importScripts` cannot be
-synchronous. This means that all symbols that are exported from a script which
-is being imported may only be safely accessed in the message handler, but not
-in the worker's global scope.
+In Worker scripts, `importScripts` is a synchronous operation which will wait
+for the script to be loaded and executed. While it's not possible to implement
+this behavior as part of an `iframe`, the `importScripts` function that is
+provided as part of this polyfill returns a `Promise` which can be awaited on.
+Since awaiting a non-Promise is a no-op, using `await` on `importScripts` will
+work in normal, as well as polyfilled environments.
 
 ## License
 
