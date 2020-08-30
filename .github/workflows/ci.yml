@@ -50,20 +50,20 @@ jobs:
       - if: steps.cache-node.outputs.cache-hit != 'true'
         run: npm install
 
-      # Run linter and build distribution files
-      - run: npm run lint
-      - run: npm run build
-      - run: npm run test
-        env:
-          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      # # Run linter and build distribution files
+      # - run: npm run lint
+      # - run: npm run build
+      # - run: npm run test
+      #   env:
+      #     SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+      #     SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
-      # Upload coverage report to codecov.io
-      - run: |
-          npm install codecov
-          npx codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      # # Upload coverage report to codecov.io
+      # - run: |
+      #     npm install codecov
+      #     npx codecov
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   # Publish Python package and Docker image
   publish:
