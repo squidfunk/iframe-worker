@@ -1,3 +1,7 @@
+iframe-worker-0.1.7 (2020-09-22)
+
+  * Fixed postMessage from iframe in Safari
+
 iframe-worker-0.1.6 (2020-08-30)
 
   * Added support for awaitable importScripts
