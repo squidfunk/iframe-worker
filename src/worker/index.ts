@@ -20,7 +20,7 @@
  * IN THE SOFTWARE.
  */
 
-import { importScripts } from "./runtime"
+import { importScripts, postMessage } from "./runtime"
 
 /* ----------------------------------------------------------------------------
  * Helper functions
@@ -96,11 +96,11 @@ export class IFrameWorker implements Worker {
       <html>
         <body>
           <script>
-            postMessage = postMessage.bind(parent)
+            postMessage = ${postMessage}
             importScripts = ${importScripts}
             addEventListener("error", function(ev) {
               parent.dispatchEvent(new ErrorEvent("error", {
-                filename: "${this.url}",
+                filename: "${url}",
                 error: ev.error
               }))
             })

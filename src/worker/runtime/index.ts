@@ -25,6 +25,16 @@
  * ------------------------------------------------------------------------- */
 
 /**
+ * Send a message from the worker to the parent window
+ *
+ * @param message - Message
+ * @param origin - Target origin
+ */
+export function postMessage(message: any, origin: string) {
+  parent.postMessage(message, origin || "*")
+}
+
+/**
  * Import one or more scripts into the worker's scope
  *
  * Note that due to JavaScript's event-driven nature `importScripts` cannot be
