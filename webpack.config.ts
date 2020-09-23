@@ -84,7 +84,7 @@ export default (_env: never, args: Configuration) => {
       extensions: [".ts", ".js", ".json"]
     },
 
-    /* Sourcemaps */
-    devtool: "source-map"
+    /* Sourcemaps - none, as they can't be fetched via file:// */
+    devtool: false
   }
 }
