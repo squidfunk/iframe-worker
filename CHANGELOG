@@ -1,3 +1,8 @@
+iframe-worker-0.1.8 (2020-09-23)
+
+  * Disabled source maps for polyfill, as they don't work for file protocol
+  * Fixed invalid origin in Safari when messaging from worker
+
 iframe-worker-0.1.7 (2020-09-22)
 
   * Fixed postMessage from iframe in Safari
