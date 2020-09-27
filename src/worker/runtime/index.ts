@@ -50,7 +50,7 @@ export function importScripts(...urls: string[]): Promise<void> {
   return Promise.all(urls.map(url => new Promise(resolve => {
     const script = document.createElement("script")
     script.src = url
-    script.addEventListener("load", () => resolve)
+    script.addEventListener("load", resolve)
     document.body.appendChild(script)
   })))
     .then(() => {

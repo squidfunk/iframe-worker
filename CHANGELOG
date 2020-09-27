@@ -1,3 +1,7 @@
+iframe-worker-0.1.9 (2020-09-27)
+
+  * Fixed importScripts shim not resolving when script was loaded
+
 iframe-worker-0.1.8 (2020-09-23)
 
   * Disabled source maps for polyfill, as they don't work for file protocol
