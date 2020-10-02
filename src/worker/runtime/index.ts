@@ -47,13 +47,12 @@ export function postMessage(message: any, origin: string) {
  * @return Promise returning with no result
  */
 export function importScripts(...urls: string[]): Promise<void> {
-  return Promise.all(urls.map(url => new Promise(resolve => {
-    const script = document.createElement("script")
-    script.src = url
-    script.addEventListener("load", resolve)
-    document.body.appendChild(script)
-  })))
-    .then(() => {
-      /* Return nothing */
-    })
+  return urls.reduce((promise, url) => (
+    promise.then(() => new Promise(resolve => {
+      const script = document.createElement("script")
+      script.src = url
+      script.addEventListener("load", () => resolve())
+      document.body.appendChild(script)
+    }))
+  ), Promise.resolve())
 }
