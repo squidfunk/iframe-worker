@@ -105,7 +105,7 @@ export class IFrameWorker implements Worker {
               }))
             })
           </script>
-          <script src="${url}"></script>
+          <script src="${url}?${+Date.now()}"></script>
         </body>
       </html>
     `)
