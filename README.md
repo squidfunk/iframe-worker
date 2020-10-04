@@ -67,10 +67,10 @@ work in polyfilled and non-polyfilled environments.
 The main reason this polyfill exists is that some users of [Material for
 MkDocs][2] need to distribute their documentation as static HTML files and
 bundle it with their product. Users would browser the documentation locally,
-using the `file://` protocol, which disabled the possibility to search the
-documentation, as the search is implemented as part of a web worker and uses
-XHR to download the search index. This polyfill in combination with the
-[localsearch][3] plugin allows to use search on the `file://` protocol.
+using the `file://` protocol, which broke the search functionality of the
+documentation, as search is implemented as part of a web worker. This polyfill
+in combination with the [localsearch][3] plugin allows to use search on
+the `file://` protocol.
 
 ## License
 
