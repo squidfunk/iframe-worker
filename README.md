@@ -19,10 +19,10 @@
 
 A tiny [WebWorker][1] polyfill for the `file://` protocol
 
-_Like [pseudo-worker][2] but using an `iframe`. This polyfill should be mostly
-spec-compliant and supports `importScripts`. It should pretty much be a drop-in
-replacement, at least for modern browsers which include a constructable
-`EventTarget` and `Promise`._
+_Like [pseudo-worker][2] but using an `iframe` instead of `XMLHTTPRequest`.
+This polyfill should be mostly spec-compliant and supports `importScripts`.
+It should pretty much be a drop-in replacement, at least for modern browsers
+which include a constructable `EventTarget` and `Promise`._
 
 ## Installation
 
