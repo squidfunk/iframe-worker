@@ -1,3 +1,8 @@
+iframe-worker-0.2.0 (2020-10-04)
+
+  * Added timestamp to import script URL for cache busting (Safari)
+  * Fixed race condition when loading multiple scripts via importScripts
+
 iframe-worker-0.1.9 (2020-09-27)
 
   * Fixed importScripts shim not resolving when script was loaded
