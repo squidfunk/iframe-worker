@@ -60,7 +60,17 @@ for the script to be loaded and executed. While it's not possible to implement
 this behavior as part of an `iframe`, the `importScripts` function that is
 provided as part of this polyfill returns a `Promise` which can be awaited on.
 Since awaiting a non-Promise is a no-op, using `await` on `importScripts` will
-work in normal, as well as polyfilled environments.
+work in polyfilled and non-polyfilled environments.
+
+## Motivation
+
+The main reason this polyfill exists is that some users of [Material for
+MkDocs][2] need to distribute their documentation as static HTML files and
+bundle it with their product. Users would browser the documentation locally,
+using the `file://` protocol, which disabled the possibility to search the
+documentation, as the search is implemented as part of a web worker and uses
+XHR to download the search index. This polyfill in combination with the
+[localsearch][3] plugin allows to use search on the `file://` protocol.
 
 ## License
 
@@ -87,3 +97,5 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 
   [1]: https://github.com/nolanlawson/pseudo-worker
+  [2]: https://github.com/squidfunk/mkdocs-material
+  [3]: https://github.com/wilhelmer/mkdocs-localsearch
