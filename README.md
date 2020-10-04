@@ -19,10 +19,10 @@
 
 A tiny [WebWorker][1] polyfill for the `file://` protocol
 
-_Think [pseudo-worker][2] but using an `iframe` instead of `XMLHTTPRequest`.
-This polyfill should be mostly spec-compliant and supports `importScripts`.
-It should pretty much be a drop-in replacement, at least for modern browsers
-which include a constructable `EventTarget` and `Promise`._
+_Like [pseudo-worker][2] but using an `iframe`. This polyfill should be mostly
+spec-compliant and supports `importScripts`. It should pretty much be a drop-in
+replacement, at least for modern browsers which include a constructable
+`EventTarget` and `Promise`._
 
 ## Installation
 
@@ -32,8 +32,7 @@ npm install iframe-worker
 
 ## Usage
 
-You can either use the polyfill from [unpkg.com](https://unpkg.com)
-__(recommended)__:
+You can use the polyfill from [unpkg.com](https://unpkg.com) __(recommended)__:
 
 ``` html
 <script src="https://unpkg.com/iframe-worker/polyfill"></script>
@@ -45,7 +44,7 @@ __(recommended)__:
 import "iframe-worker/polyfill"
 ```
 
-... or use `iframe-worker` programmatically:
+... or use `IFrameWorker` programmatically:
 
 ``` js
 import { IFrameWorker } from "iframe-worker"
