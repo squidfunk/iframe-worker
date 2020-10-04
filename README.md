@@ -17,9 +17,9 @@
 
 # iframe-worker
 
-A tiny WebWorker polyfill for the `file://` protocol
+A tiny [WebWorker][1] polyfill for the `file://` protocol
 
-_Think [pseudo-worker][1] but using an `iframe` instead of `XMLHTTPRequest`.
+_Think [pseudo-worker][2] but using an `iframe` instead of `XMLHTTPRequest`.
 This polyfill should be mostly spec-compliant and supports `importScripts`.
 It should pretty much be a drop-in replacement, at least for modern browsers
 which include a constructable `EventTarget` and `Promise`._
@@ -65,11 +65,11 @@ work in polyfilled and non-polyfilled environments.
 ## Motivation
 
 The main reason this polyfill exists is that some users of [Material for
-MkDocs][2] need to distribute their documentation as static HTML files and
+MkDocs][3] need to distribute their documentation as static HTML files and
 bundle it with their product. Users would browser the documentation locally,
 using the `file://` protocol, which broke the search functionality of the
 documentation, as search is implemented as part of a web worker. This polyfill
-in combination with the [localsearch][3] plugin allows to use search on
+in combination with the [localsearch][4] plugin allows to use search on
 the `file://` protocol.
 
 ## License
@@ -96,6 +96,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 
-  [1]: https://github.com/nolanlawson/pseudo-worker
-  [2]: https://github.com/squidfunk/mkdocs-material
-  [3]: https://github.com/wilhelmer/mkdocs-localsearch
+  [1]: https://www.w3.org/TR/workers/
+  [2]: https://github.com/nolanlawson/pseudo-worker
+  [3]: https://github.com/squidfunk/mkdocs-material
+  [4]: https://github.com/wilhelmer/mkdocs-localsearch
