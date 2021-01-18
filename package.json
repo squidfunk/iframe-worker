@@ -58,7 +58,7 @@
     "karma-sauce-launcher": "^4.1.5",
     "karma-sourcemap-loader": "^0.3.8",
     "karma-spec-reporter": "^0.0.32",
-    "karma-summary-reporter": "^1.8.0",
+    "karma-summary-reporter": "^2.0.0",
     "karma-webpack": "^4.0.2",
     "npm-run-all": "^4.1.5",
     "project-name-generator": "^2.1.7",
