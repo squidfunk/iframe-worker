@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/chance": "^1.1.0",
     "@types/jasmine": "^3.5.14",
-    "@types/karma": "^5.0.0",
+    "@types/karma": "^6.1.0",
     "@types/node": "^14.6.2",
     "@types/webpack": "^4.41.21",
     "chance": "^1.1.7",
