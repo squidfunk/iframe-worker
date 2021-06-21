@@ -1,3 +1,7 @@
+iframe-worker-0.2.1 (2021-06-21)
+
+  * Switched to Webpack 5
+
 iframe-worker-0.2.0 (2020-10-04)
 
   * Added timestamp to import script URL for cache busting (Safari)
