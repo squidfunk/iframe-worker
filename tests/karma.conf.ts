@@ -37,9 +37,7 @@ export default (config: KarmaConfig & KarmaConfigOptions) => {
     basePath: __dirname,
 
     /* Frameworks to be used */
-    frameworks: [
-      "jasmine"
-    ],
+    frameworks: ["webpack", "jasmine"],
 
     /* Include tests */
     files: [

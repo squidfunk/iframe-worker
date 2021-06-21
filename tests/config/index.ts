@@ -56,7 +56,16 @@ export function webpack(
       rules: [
         {
           test: /\.ts$/,
-          use: "ts-loader",
+          use: {
+            loader: "ts-loader",
+            options: {
+              compilerOptions: {
+                declaration: false,
+                declarationMap: false,
+                importHelpers: true
+              }
+            }
+          },
           exclude: /\/node_modules\//
         },
         ...(config.singleRun
