@@ -48,7 +48,7 @@
     "@types/webpack": "^5.28.0",
     "chance": "^1.1.7",
     "istanbul-instrumenter-loader": "^3.0.1",
-    "jasmine": "^3.7.0",
+    "jasmine": "^4.0.1",
     "jasmine-spec-reporter": "^7.0.0",
     "karma": "^6.3.4",
     "karma-chrome-launcher": "^3.1.0",
