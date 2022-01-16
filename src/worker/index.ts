@@ -29,7 +29,7 @@ import { importScripts, postMessage } from "./runtime"
 /**
  * Create an invisible `iframe`
  *
- * @return Element
+ * @returns Element
  */
 function createIFrameHost(): HTMLIFrameElement {
   const iframe = document.createElement("iframe")
@@ -113,7 +113,7 @@ export class IFrameWorker implements Worker {
 
     /* Register internal listeners and track iframe state */
     window.addEventListener("message", this.handleMessage)
-    window.onerror = this.handleError as any // Hack: silence TypeScript
+    window.onerror = this.handleError as OnErrorEventHandler
     this.ready = new Promise((resolve, reject) => {
       this.worker.onload = resolve
       this.worker.onerror = reject
@@ -136,8 +136,8 @@ export class IFrameWorker implements Worker {
    *
    * @param data - Message data
    */
-  public postMessage(data: any): void {
-    this.ready
+  public postMessage(data: unknown): void {
+    void this.ready
       .catch()
       .then(() => {
         this.worker.dispatchEvent(
@@ -152,7 +152,7 @@ export class IFrameWorker implements Worker {
    * If the window doesn't exist, e.g. when the `iframe` has been removed by
    * terminating the web worker, an error is thrown.
    *
-   * @return Window
+   * @returns Window
    */
   protected get worker(): Window {
     /* istanbul ignore if: no idea when this might happen, PR if you do */

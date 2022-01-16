@@ -44,7 +44,7 @@ export function postMessage(message: any, origin: string) {
  *
  * @param urls - Script URLs to import
  *
- * @return Promise returning with no result
+ * @returns Promise returning with no result
  */
 export function importScripts(...urls: string[]): Promise<void> {
   return urls.reduce((promise, url) => (
