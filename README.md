@@ -17,7 +17,7 @@
 
 # iframe-worker
 
-A tiny [WebWorker] polyfill for the `file://` protocol
+A tiny [WebWorker] polyfill for the `file://` protocol in less than `900b`
 
 > Like [pseudo-worker] but using an `iframe` instead of
 > [`XMLHTTPRequest`][XMLHTTPRequest]. This polyfill should be mostly
