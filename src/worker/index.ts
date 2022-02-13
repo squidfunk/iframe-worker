@@ -44,10 +44,10 @@ function createIFrameHost(): HTMLIFrameElement {
 /**
  * A tiny and mostly spec-compliant WebWorker polyfill
  *
- * This WebWorker polyfill is implemented on top of an `iframe` element to allow
- * web workers in contexts when `XMLHTTPRequest` is not available or blocked by
- * the browser, e.g. when using the `file:` protocol. Note that this polyfill
- * cannot provide asynchronous workers, as iframes are synchronous by nature.
+ * This WebWorker polyfill is implemented on top of an `IFrameElement` to allow
+ * workers in contexts when `XMLHTTPRequest` is not available, or blocked by the
+ * browser, e.g. when using the `file://` protocol. This polyfill can't provide
+ * asynchronous workers, as iframes are synchronous by nature.
  */
 export class IFrameWorker implements Worker {
 
@@ -92,23 +92,23 @@ export class IFrameWorker implements Worker {
 
     /* Initialize runtime and worker script */
     this.worker.document.open()
-    this.worker.document.write(`
-      <html>
-        <body>
-          <script>
-            postMessage = ${postMessage}
-            importScripts = ${importScripts}
-            addEventListener("error", function(ev) {
-              parent.dispatchEvent(new ErrorEvent("error", {
-                filename: "${url}",
-                error: ev.error
-              }))
-            })
-          </script>
-          <script src="${url}?${+Date.now()}"></script>
-        </body>
-      </html>
-    `)
+    this.worker.document.write(
+      "<html>" +
+        "<body>" +
+          "<script>" +
+            `postMessage=${postMessage};` +
+            `importScripts=${importScripts};` +
+            "addEventListener(\"error\",ev=>{" +
+              "parent.dispatchEvent(new ErrorEvent(\"error\",{" +
+                `filename:"${url}",` +
+                "error:ev.error" +
+              "}))" +
+            "})" +
+          "</script>" +
+          `<script src="${url}?${+Date.now()}"></script>` +
+        "</body>" +
+      "</html>"
+    )
     this.worker.document.close()
 
     /* Register internal listeners and track iframe state */
@@ -150,15 +150,12 @@ export class IFrameWorker implements Worker {
    * Helper to retrieve the content window of the `iframe`
    *
    * If the window doesn't exist, e.g. when the `iframe` has been removed by
-   * terminating the web worker, an error is thrown.
+   * terminating the worker, an error is thrown.
    *
    * @returns Window
    */
   protected get worker(): Window {
-    /* istanbul ignore if: no idea when this might happen, PR if you do */
-    if (!this.iframe.contentWindow)
-      throw new ReferenceError("Invalid iframe: expected window to be present")
-    return this.iframe.contentWindow
+    return this.iframe.contentWindow!
   }
 
   /**
