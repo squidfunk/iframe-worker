@@ -17,12 +17,12 @@
 
 # iframe-worker
 
-A tiny [WebWorker][1] polyfill for the `file://` protocol
+A tiny [WebWorker] polyfill for the `file://` protocol
 
-_Like [pseudo-worker][2] but using an `iframe` instead of `XMLHTTPRequest`.
-This polyfill should be mostly spec-compliant and supports `importScripts`.
-It should pretty much be a drop-in replacement, at least for modern browsers
-which include a constructable `EventTarget` and `Promise`._
+> Like [pseudo-worker] but using an `iframe` instead of `XMLHTTPRequest`.
+> This polyfill should be mostly spec-compliant and supports `importScripts`.
+> It should pretty much be a drop-in replacement, at least for modern browsers
+> which include a constructable `EventTarget` and `Promise`._
 
 ## Installation
 
@@ -38,7 +38,7 @@ You can use the polyfill from [unpkg.com](https://unpkg.com) __(recommended)__:
 <script src="https://unpkg.com/iframe-worker/polyfill"></script>
 ```
 
-... or include the polyfill in your Webpack build:
+... or bundle the polyfill with your application:
 
 ``` js
 import "iframe-worker/polyfill"
@@ -50,26 +50,19 @@ import "iframe-worker/polyfill"
 import { IFrameWorker } from "iframe-worker"
 ```
 
-The polyfill will automatically mount if the document is served via `file://`.
+The polyfill will only mount if the document is served via `file://`.
 
 ## Caveats
 
-In Worker scripts, `importScripts` is a synchronous operation which will wait
-for the script to be loaded and executed. While it's not possible to implement
-this behavior as part of an `iframe`, the `importScripts` function that is
-provided as part of this polyfill returns a `Promise` which can be awaited on.
-Since awaiting a non-Promise is a no-op, using `await` on `importScripts` will
-work in polyfilled and non-polyfilled environments.
+In a WebWorker script, [`importScripts`][importScripts] is a synchronous
+operation, as it will block the thread until the script was fully loaded and 
+evaluated. This is not supported in an `iframe`. For this reason, the polyfill
+for `importScripts` included with this library will return a `Promise`, chaining
+all passed URLs into a sequence, making it awaitable. 
 
-## Motivation
-
-The main reason this polyfill exists is that some users of [Material for
-MkDocs][3] need to distribute their documentation as static HTML files and
-bundle it with their product. Users would browser the documentation locally,
-using the `file://` protocol, which broke the search functionality of the
-documentation, as search is implemented as part of a web worker. This polyfill
-in combination with the [localsearch][4] plugin allows to use search on
-the `file://` protocol.
+Since awaiting anything else than a `Promise` will wrap the awaited thing into
+a `Promise`, calls to `importScripts` should practically behave the same way for
+all protocols other than `file://`.
 
 ## License
 
@@ -95,7 +88,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 
-  [1]: https://www.w3.org/TR/workers/
-  [2]: https://github.com/nolanlawson/pseudo-worker
-  [3]: https://github.com/squidfunk/mkdocs-material
-  [4]: https://github.com/wilhelmer/mkdocs-localsearch
+  [WebWorker]: https://www.w3.org/TR/workers/
+  [pseudo-worker]: https://github.com/nolanlawson/pseudo-worker
+  [importScripts]: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
