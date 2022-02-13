@@ -1,4 +1,9 @@
-iframe-worker-0.2.2 (2022-02-10)
+iframe-worker-0.2.4 (2022-02-13)
+
+  * Removed (seemingly) unnecessary check
+  * Reduced size of polyfill to 850b
+
+iframe-worker-0.2.3 (2022-02-10)
 
   * Switched to esbuild
 
