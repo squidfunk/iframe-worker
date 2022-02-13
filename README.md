@@ -19,10 +19,11 @@
 
 A tiny [WebWorker] polyfill for the `file://` protocol
 
-> Like [pseudo-worker] but using an `iframe` instead of `XMLHTTPRequest`.
-> This polyfill should be mostly spec-compliant and supports `importScripts`.
-> It should pretty much be a drop-in replacement, at least for modern browsers
-> which include a constructable `EventTarget` and `Promise`._
+> Like [pseudo-worker] but using an `iframe` instead of
+> [`XMLHTTPRequest`][XMLHTTPRequest]. This polyfill should be mostly
+> spec-compliant and supports [`importScripts`][importScripts]. It should
+> pretty much be a drop-in replacement, at least for modern browsers which
+> include a constructable `EventTarget` and `Promise`._
 
 ## Installation
 
@@ -57,12 +58,14 @@ The polyfill will only mount if the document is served via `file://`.
 In a WebWorker script, [`importScripts`][importScripts] is a synchronous
 operation, as it will block the thread until the script was fully loaded and 
 evaluated. This is not supported in an `iframe`. For this reason, the polyfill
-for `importScripts` included with this library will return a `Promise`, chaining
-all passed URLs into a sequence, making it awaitable. 
+for [`importScripts`][importScripts] included with this library will return a 
+`Promise`, chaining all passed URLs into a sequence, making it awaitable. 
 
 Since awaiting anything else than a `Promise` will wrap the awaited thing into
-a `Promise`, calls to `importScripts` should practically behave the same way for
-all protocols other than `file://`.
+a `Promise`, calls to [`importScripts`][importScripts] should practically behave
+the same way for all protocols other than `file://`. Thus, if you want to make
+sure that your WebWorker works for all protocols, always `await` all calls to 
+[`importScripts`][importScripts].
 
 ## License
 
@@ -90,4 +93,5 @@ IN THE SOFTWARE.
 
   [WebWorker]: https://www.w3.org/TR/workers/
   [pseudo-worker]: https://github.com/nolanlawson/pseudo-worker
+  [XMLHTTPRequest]: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
   [importScripts]: https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope/importScripts
