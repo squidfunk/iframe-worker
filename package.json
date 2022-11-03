@@ -1,6 +1,6 @@
 {
   "name": "iframe-worker",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "A tiny WebWorker shim for the file:// protocol",
   "keywords": [
     "webworker",
