@@ -1,10 +1,11 @@
 {
   "name": "iframe-worker",
   "version": "0.2.4",
-  "description": "A tiny WebWorker polyfill for the file:// protocol",
+  "description": "A tiny WebWorker shim for the file:// protocol",
   "keywords": [
     "webworker",
     "polyfill",
+    "shim",
     "iframe"
   ],
   "homepage": "https://github.com/squidfunk/iframe-worker",
@@ -24,16 +25,16 @@
   },
   "files": [
     "dist",
-    "polyfill"
+    "shim"
   ],
   "main": "dist/cjs",
   "module": "dist/esm",
   "scripts": {
-    "build": "run-p build:cjs build:esm build:polyfill",
+    "build": "run-p build:*",
     "build:cjs": "tsc --outDir dist/cjs -m commonjs",
     "build:esm": "tsc --outDir dist/esm -m es2015",
-    "build:polyfill": "esbuild --bundle --outfile=polyfill/index.js --minify src/polyfill/index.ts",
-    "clean": "rimraf dist polyfill",
+    "build:shim": "esbuild --bundle --outfile=shim/index.js --minify src/shim/index.ts",
+    "clean": "rimraf dist shim",
     "check": "run-p check:*",
     "check:build": "tsc --noEmit",
     "check:style": "eslint --cache \"src/**/*.ts\"",

@@ -42,11 +42,11 @@ function createIFrameHost(): HTMLIFrameElement {
  * ------------------------------------------------------------------------- */
 
 /**
- * A tiny and mostly spec-compliant WebWorker polyfill
+ * A tiny and mostly spec-compliant `WebWorker` shim
  *
- * This WebWorker polyfill is implemented on top of an `IFrameElement` to allow
+ * This `WebWorker` shim is implemented on top of an `IFrameElement` to allow
  * workers in contexts when `XMLHTTPRequest` is not available, or blocked by the
- * browser, e.g. when using the `file://` protocol. This polyfill can't provide
+ * browser, e.g. when using the `file://` protocol. This shim can't provide
  * asynchronous workers, as iframes are synchronous by nature.
  */
 export class IFrameWorker implements Worker {

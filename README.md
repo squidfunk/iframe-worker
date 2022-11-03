@@ -17,10 +17,10 @@
 
 # iframe-worker
 
-A tiny [WebWorker] polyfill for the `file://` protocol in less than `900b`
+A tiny [WebWorker] shim for the `file://` protocol in less than `900b`
 
 > Like [pseudo-worker] but using an `iframe` instead of
-> [`XMLHTTPRequest`][XMLHTTPRequest]. This polyfill should be mostly
+> [`XMLHTTPRequest`][XMLHTTPRequest]. This shim should be mostly
 > spec-compliant and supports [`importScripts`][importScripts]. It should
 > pretty much be a drop-in replacement, at least for modern browsers which
 > include a constructable `EventTarget` and `Promise`._
@@ -33,16 +33,16 @@ npm install iframe-worker
 
 ## Usage
 
-You can use the polyfill from [unpkg.com](https://unpkg.com) __(recommended)__:
+You can use the shim from [unpkg.com](https://unpkg.com) __(recommended)__:
 
 ``` html
-<script src="https://unpkg.com/iframe-worker/polyfill"></script>
+<script src="https://unpkg.com/iframe-worker/shim"></script>
 ```
 
-... or bundle the polyfill with your application:
+... or bundle the shim with your application:
 
 ``` js
-import "iframe-worker/polyfill"
+import "iframe-worker/shim"
 ```
 
 ... or use `IFrameWorker` programmatically:
@@ -51,14 +51,14 @@ import "iframe-worker/polyfill"
 import { IFrameWorker } from "iframe-worker"
 ```
 
-The polyfill will only mount if the document is served via `file://`.
+The shim will only mount if the document is served via `file://`.
 
 ## Caveats
 
 In a WebWorker script, [`importScripts`][importScripts] is a synchronous
 operation, as it will block the thread until the script was fully loaded and 
-evaluated. This is not supported in an `iframe`. For this reason, the polyfill
-for [`importScripts`][importScripts] included with this library will return a 
+evaluated. This is not supported in an `iframe`. For this reason, the shim for
+[`importScripts`][importScripts] included with this library will return a 
 `Promise`, chaining all passed URLs into a sequence, making it awaitable. 
 
 Since awaiting anything else than a `Promise` will wrap the awaited thing into
