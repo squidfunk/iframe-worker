@@ -17,7 +17,7 @@
 
 # iframe-worker
 
-A tiny [WebWorker] shim for the `file://` protocol in less than `900b`
+A tiny [WebWorker] shim for `file://` in less than `900b`
 
 > Like [pseudo-worker] but using an `iframe` instead of
 > [`XMLHTTPRequest`][XMLHTTPRequest]. This shim should be mostly
