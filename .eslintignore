@@ -31,7 +31,7 @@ webpack.config.ts
 
 # Distribution files
 dist
-polyfill
+shim
 
 # Caches and logs
 *.cpuprofile

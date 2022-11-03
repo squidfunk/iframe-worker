@@ -30,7 +30,7 @@
     "typings"
   ],
   "exclude": [
-    "src/polyfill",
+    "src/shim",
     "node_modules"
   ]
 }

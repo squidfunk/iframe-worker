@@ -28,7 +28,7 @@
 # Distribution files
 /dist
 /package
-/polyfill
+/shim
 /*.tgz
 
 # Caches and logs
