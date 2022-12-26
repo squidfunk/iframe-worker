@@ -1,6 +1,6 @@
 iframe-worker-1.0.1 (2022-12-26)
 
-  * Reduced size of polyfill to 783b through code golfing
+  * Reduced size of shim to 821b through code golfing
 
 iframe-worker-1.0.0 (2022-11-03)
 
