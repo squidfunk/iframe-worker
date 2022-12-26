@@ -115,13 +115,5 @@ describe("worker", () => {
         done()
       })
     })
-
-    /* Test: should throw on worker options */
-    it("should throw on worker options", () => {
-      expect(() => {
-        new IFrameWorker(chance.url(), {})
-      })
-        .toThrowError("Options are not supported for iframe workers")
-    })
   })
 })

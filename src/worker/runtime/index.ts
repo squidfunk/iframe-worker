@@ -51,7 +51,8 @@ export function importScripts(...urls: string[]): Promise<void> {
     promise.then(() => new Promise(resolve => {
       const script = document.createElement("script")
       script.src = url
-      script.addEventListener("load", () => resolve())
+      // @ts-expect-error - code golfing
+      script.onload = resolve
       document.body.appendChild(script)
     }))
   ), Promise.resolve())

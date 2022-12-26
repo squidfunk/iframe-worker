@@ -23,21 +23,6 @@
 import { importScripts, postMessage } from "./runtime"
 
 /* ----------------------------------------------------------------------------
- * Helper functions
- * ------------------------------------------------------------------------- */
-
-/**
- * Create an invisible `iframe`
- *
- * @returns Element
- */
-function createIFrameHost(): HTMLIFrameElement {
-  const iframe = document.createElement("iframe")
-  iframe.width = iframe.height = iframe.frameBorder = "0"
-  return iframe
-}
-
-/* ----------------------------------------------------------------------------
  * Class
  * ------------------------------------------------------------------------- */
 
@@ -73,13 +58,8 @@ export class IFrameWorker implements Worker {
    * Create a new worker from the given URL
    *
    * @param url - Worker script URL
-   * @param options - Worker options
    */
-  public constructor(
-    protected url: string | URL, options?: WorkerOptions
-  ) {
-    if (typeof options !== "undefined")
-      throw new TypeError("Options are not supported for iframe workers")
+  public constructor(protected url: string) {
     const target = new EventTarget()
 
     /* Delegate event handling to internal target */
@@ -88,7 +68,9 @@ export class IFrameWorker implements Worker {
     this.dispatchEvent       = target.dispatchEvent.bind(target)
 
     /* Create iframe to host the worker script */
-    document.body.appendChild(this.iframe = createIFrameHost())
+    const iframe = document.createElement("iframe")
+    iframe.width = iframe.height = iframe.frameBorder = "0"
+    document.body.appendChild(this.iframe = iframe)
 
     /* Initialize runtime and worker script */
     this.worker.document.open()
@@ -112,7 +94,7 @@ export class IFrameWorker implements Worker {
     this.worker.document.close()
 
     /* Register internal listeners and track iframe state */
-    window.addEventListener("message", this.handleMessage)
+    window.onmessage = this.handleMessage
     window.onerror = this.handleError as OnErrorEventHandler
     this.ready = new Promise((resolve, reject) => {
       this.worker.onload = resolve
@@ -127,8 +109,7 @@ export class IFrameWorker implements Worker {
     document.body.removeChild(this.iframe)
 
     /* Unregister internal listeners */
-    window.removeEventListener("message", this.handleMessage)
-    window.onerror = null
+    window.onmessage = window.onerror = null
   }
 
   /**

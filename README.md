@@ -17,7 +17,7 @@
 
 # iframe-worker
 
-A tiny [WebWorker] shim for `file://` in less than `900b`
+A tiny [WebWorker] shim for `file://` in less than `800b`
 
 ---
 
