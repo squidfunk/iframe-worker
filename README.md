@@ -19,11 +19,11 @@
 
 A tiny [WebWorker] shim for `file://` in less than `900b`
 
-> Like [pseudo-worker] but using an `iframe` instead of
-> [`XMLHTTPRequest`][XMLHTTPRequest]. This shim should be mostly
-> spec-compliant and supports [`importScripts`][importScripts]. It should
-> pretty much be a drop-in replacement, at least for modern browsers which
-> include a constructable `EventTarget` and `Promise`._
+---
+
+Similar to [pseudo-worker], but using an `iframe` instead of
+[`XMLHTTPRequest`][XMLHTTPRequest]. This shim should be mostly
+spec-compliant and supports [`importScripts`][importScripts].
 
 ## Installation
 
@@ -39,19 +39,18 @@ You can use the shim from [unpkg.com](https://unpkg.com) __(recommended)__:
 <script src="https://unpkg.com/iframe-worker/shim"></script>
 ```
 
-... or bundle the shim with your application:
+... or install and bundle the shim with your application:
 
 ``` js
 import "iframe-worker/shim"
 ```
 
-... or use `IFrameWorker` programmatically:
+The shim will only mount if the document is served locally via `file://`. You
+can also use `IFrameWorker` programmatically to customize the integration:
 
 ``` js
 import { IFrameWorker } from "iframe-worker"
 ```
-
-The shim will only mount if the document is served via `file://`.
 
 ## Caveats
 
