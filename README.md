@@ -1,7 +1,6 @@
 [![Github Action][action-image]][action-link]
 [![Codecov][codecov-image]][codecov-link]
 [![Gitter][gitter-image]][gitter-link]
-[![Bundlephobia][bundle-image]][bundle-link]
 [![npm][npm-image]][npm-link]
 
   [action-image]: https://github.com/squidfunk/iframe-worker/workflows/ci/badge.svg?branch=master
@@ -10,14 +9,12 @@
   [codecov-link]: https://codecov.io/gh/squidfunk/iframe-worker
   [gitter-image]: https://badges.gitter.im/squidfunk/iframe-worker.svg
   [gitter-link]: https://gitter.im/squidfunk/iframe-worker
-  [bundle-image]: https://badgen.net/bundlephobia/minzip/iframe-worker
-  [bundle-link]: https://bundlephobia.com/result?p=iframe-worker
   [npm-image]: https://img.shields.io/npm/v/iframe-worker.svg
   [npm-link]: https://npmjs.com/package/iframe-worker
 
 # iframe-worker
 
-A tiny [WebWorker] shim for `file://` in less than `900b`
+A tiny [WebWorker] shim for `file://` in `783b` – no dependencies.
 
 ---
 
