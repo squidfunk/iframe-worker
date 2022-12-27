@@ -52,7 +52,7 @@ export class IFrameWorker implements Worker {
   /**
    * A promise indicating whether the `iframe` was initialized
    */
-  protected ready: Promise<unknown>
+  protected r: Promise<unknown>
 
   /**
    * Create a new worker from the given URL
@@ -73,8 +73,8 @@ export class IFrameWorker implements Worker {
     document.body.appendChild(this.iframe = iframe)
 
     /* Initialize runtime and worker script */
-    this.worker.document.open()
-    this.worker.document.write(
+    this.w.document.open()
+    this.w.document.write(
       "<html>" +
         "<body>" +
           "<script>" +
@@ -91,14 +91,14 @@ export class IFrameWorker implements Worker {
         "</body>" +
       "</html>"
     )
-    this.worker.document.close()
+    this.w.document.close()
 
     /* Register internal listeners and track iframe state */
-    window.onmessage = this.handleMessage
-    window.onerror = this.handleError as OnErrorEventHandler
-    this.ready = new Promise((resolve, reject) => {
-      this.worker.onload = resolve
-      this.worker.onerror = reject
+    window.onmessage = this.m
+    window.onerror = this.e as OnErrorEventHandler
+    this.r = new Promise((resolve, reject) => {
+      this.w.onload = resolve
+      this.w.onerror = reject
     })
   }
 
@@ -118,10 +118,10 @@ export class IFrameWorker implements Worker {
    * @param data - Message data
    */
   public postMessage(data: unknown): void {
-    void this.ready
+    void this.r
       .catch()
       .then(() => {
-        this.worker.dispatchEvent(
+        this.w.dispatchEvent(
           new MessageEvent("message", { data })
         )
       })
@@ -135,7 +135,7 @@ export class IFrameWorker implements Worker {
    *
    * @returns Window
    */
-  protected get worker(): Window {
+  protected get w(): Window {
     return this.iframe.contentWindow!
   }
 
@@ -144,8 +144,8 @@ export class IFrameWorker implements Worker {
    *
    * @param ev - Message event
    */
-  protected handleMessage = (ev: MessageEvent): void => {
-    if (ev.source === this.worker) {
+  protected m = (ev: MessageEvent): void => {
+    if (ev.source === this.w) {
       ev.stopImmediatePropagation()
       this.dispatchEvent(new MessageEvent("message", { data: ev.data }))
       if (this.onmessage)
@@ -162,7 +162,7 @@ export class IFrameWorker implements Worker {
    * @param colno - Source column number
    * @param error - Error object
    */
-  protected handleError = (
+  protected e = (
     message?: string, filename?: string,
     lineno?: number, colno?: number,
     error?: Error
