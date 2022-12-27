@@ -1,3 +1,7 @@
+iframe-worker-1.0.2 (2022-12-27)
+
+  * Reduced size of shim to 765b through code golfing
+
 iframe-worker-1.0.1 (2022-12-26)
 
   * Reduced size of shim to 783b through code golfing
