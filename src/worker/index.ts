@@ -70,13 +70,30 @@ export class IFrameWorker implements Worker {
     /* Create iframe to host the worker script */
     const iframe = document.createElement("iframe")
     iframe.width = iframe.height = iframe.frameBorder = "0"
-    document.body.appendChild(this.iframe = iframe)
+    
+    /* Tells browsers to treat iframe as if from another origin */
+    iframe.setAttribute('sandbox','allow-scripts');
+    
+    
 
     /* Initialize runtime and worker script */
-    this.w.document.open()
-    this.w.document.write(
+    /* Encode the iframe page into a data URI */
+    const dataUri = "data:text/html;base64," + 
+    btoa(
       "<html>" +
         "<body>" +
+      /* Attempt to change the origin of the iframe using a parent domain suffix */
+          "<script>" +
+          `try{
+            let domain_split = document.domain.split('.');
+
+            if(domain_split.length>1){
+              document.domain = domain_split[domain_split.length-2] + '.' + domain_split[domain_split.length-1];
+            }
+           }catch(e){
+            console.log(e);
+           }` +
+          "</script>" +
           "<script>" +
             `postMessage=${postMessage};` +
             `importScripts=${importScripts};` +
@@ -90,9 +107,12 @@ export class IFrameWorker implements Worker {
           `<script src="${url}?${+Date.now()}"></script>` +
         "</body>" +
       "</html>"
-    )
-    this.w.document.close()
-
+    );
+    
+    iframe.src=dataUri;
+  
+    document.body.appendChild(this.iframe = iframe);
+    
     /* Register internal listeners and track iframe state */
     window.onmessage = this.m
     window.onerror = this.e as OnErrorEventHandler
