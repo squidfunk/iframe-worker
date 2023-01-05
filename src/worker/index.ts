@@ -82,18 +82,6 @@ export class IFrameWorker implements Worker {
     btoa(
       "<html>" +
         "<body>" +
-      /* Attempt to change the origin of the iframe using a parent domain suffix */
-          "<script>" +
-          `try{
-            let domain_split = document.domain.split('.');
-
-            if(domain_split.length>1){
-              document.domain = domain_split[domain_split.length-2] + '.' + domain_split[domain_split.length-1];
-            }
-           }catch(e){
-            console.log(e);
-           }` +
-          "</script>" +
           "<script>" +
             `postMessage=${postMessage};` +
             `importScripts=${importScripts};` +
