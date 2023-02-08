@@ -101,7 +101,7 @@ export class IFrameWorker extends EventTarget implements Worker {
    * Immediately terminate the worker
    */
   public terminate(): void {
-    document.body.removeChild(this.iframe)
+    this.iframe.remove()
     onmessage = onerror = null
   }
 
