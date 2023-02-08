@@ -34,15 +34,15 @@ import { importScripts, postMessage } from "./runtime"
  * browser, e.g. when using the `file://` protocol. This shim can't provide
  * asynchronous workers, as iframes are synchronous by nature.
  */
-export class IFrameWorker implements Worker {
+export class IFrameWorker extends EventTarget implements Worker {
 
-  public addEventListener: Worker["addEventListener"]
-  public removeEventListener: Worker["removeEventListener"]
-  public dispatchEvent: Worker["dispatchEvent"]
+  declare public addEventListener: Worker["addEventListener"]
+  declare public removeEventListener: Worker["removeEventListener"]
+  declare public dispatchEvent: Worker["dispatchEvent"]
 
-  public onerror: Worker["onerror"] = null
-  public onmessage: Worker["onmessage"] = null
-  public onmessageerror: Worker["onmessageerror"] = null
+  declare public onerror: Worker["onerror"]
+  declare public onmessage: Worker["onmessage"]
+  declare public onmessageerror: Worker["onmessageerror"]
 
   /**
    * The `iframe` we'll use to simulate a worker
@@ -60,12 +60,7 @@ export class IFrameWorker implements Worker {
    * @param url - Worker script URL
    */
   public constructor(protected url: string) {
-    const target = new EventTarget()
-
-    /* Delegate event handling to internal target */
-    this.addEventListener    = target.addEventListener.bind(target)
-    this.removeEventListener = target.removeEventListener.bind(target)
-    this.dispatchEvent       = target.dispatchEvent.bind(target)
+    super()
 
     /* Create iframe to host the worker script */
     const iframe = document.createElement("iframe")

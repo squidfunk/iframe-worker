@@ -4,8 +4,7 @@
     "paths": {
       "_/*": ["../tests/*"]
     },
-    "rootDir": "..",
-    "target": "es5"
+    "rootDir": ".."
   },
   "include": [
     "../src",
