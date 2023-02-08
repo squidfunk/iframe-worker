@@ -64,7 +64,7 @@ export class IFrameWorker extends EventTarget implements Worker {
 
     /* Create iframe to host the worker script */
     const iframe = document.createElement("iframe")
-    iframe.width = iframe.height = iframe.frameBorder = "0"
+    iframe.hidden = true
     document.body.appendChild(this.iframe = iframe)
 
     /* Initialize runtime and worker script */
@@ -82,15 +82,15 @@ export class IFrameWorker extends EventTarget implements Worker {
               "}))" +
             "})" +
           "</script>" +
-          `<script src="${url}?${+Date.now()}"></script>` +
+          `<script src=${url}?${+Date.now()}></script>` +
         "</body>" +
       "</html>"
     )
     this.w.document.close()
 
     /* Register internal listeners and track iframe state */
-    window.onmessage = this.m
-    window.onerror = this.e as OnErrorEventHandler
+    onmessage = this.m
+    onerror = this.e as OnErrorEventHandler
     this.r = new Promise((resolve, reject) => {
       this.w.onload = resolve
       this.w.onerror = reject
@@ -102,9 +102,7 @@ export class IFrameWorker extends EventTarget implements Worker {
    */
   public terminate(): void {
     document.body.removeChild(this.iframe)
-
-    /* Unregister internal listeners */
-    window.onmessage = window.onerror = null
+    onmessage = onerror = null
   }
 
   /**
@@ -141,7 +139,7 @@ export class IFrameWorker extends EventTarget implements Worker {
    */
   protected m = (ev: MessageEvent): void => {
     if (ev.source === this.w) {
-      ev.stopImmediatePropagation()
+      // ev.stopImmediatePropagation() // doesn't seem necessary
       this.dispatchEvent(new MessageEvent("message", { data: ev.data }))
       if (this.onmessage)
         this.onmessage(ev)
@@ -163,7 +161,7 @@ export class IFrameWorker extends EventTarget implements Worker {
     error?: Error
   ): void => {
     /* istanbul ignore else: will terminate jasmine */
-    if (filename === this.url.toString()) {
+    if (filename === `${this.url}`) {
       const ev = new ErrorEvent("error", {
         message, filename, lineno, colno, error
       })

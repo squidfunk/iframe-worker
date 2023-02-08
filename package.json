@@ -1,7 +1,7 @@
 {
   "name": "iframe-worker",
   "version": "1.0.2",
-  "description": "A tiny WebWorker shim for file:// in 732b",
+  "description": "A tiny WebWorker shim for file:// in 690b",
   "keywords": [
     "webworker",
     "polyfill",

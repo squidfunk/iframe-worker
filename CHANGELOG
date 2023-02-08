@@ -1,3 +1,8 @@
+iframe-worker-1.0.3 (2023-02-08)
+
+  * Improved implementation by extending EventTarget
+  * Removed more code unnecessary for shimming
+
 iframe-worker-1.0.2 (2022-12-27)
 
   * Reduced size of shim to 765b through code golfing

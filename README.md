@@ -14,7 +14,7 @@
 
 # iframe-worker
 
-A tiny [WebWorker] shim for `file://` in `732b` – no dependencies.
+A tiny [WebWorker] shim for `file://` in `690b` – no dependencies.
 
 ---
 
