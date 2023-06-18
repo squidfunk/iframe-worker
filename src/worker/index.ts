@@ -75,10 +75,10 @@ export class IFrameWorker extends EventTarget implements Worker {
           "<script>" +
             `postMessage=${postMessage};` +
             `importScripts=${importScripts};` +
-            "addEventListener(\"error\",ev=>{" +
+            "addEventListener(\"error\",({error})=>{" +
               "parent.dispatchEvent(new ErrorEvent(\"error\",{" +
                 `filename:"${url}",` +
-                "error:ev.error" +
+                "error" +
               "}))" +
             "})" +
           "</script>" +
