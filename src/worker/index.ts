@@ -31,8 +31,11 @@ import { importScripts, postMessage } from "./runtime"
  *
  * This `WebWorker` shim is implemented on top of an `IFrameElement` to allow
  * workers in contexts when `XMLHTTPRequest` is not available, or blocked by the
- * browser, e.g. when using the `file://` protocol. This shim can't provide
- * asynchronous workers, as iframes are synchronous by nature.
+ * browser, e.g. when using the `file://` protocol. This shim can provide
+ * asynchronous workers, if the options.src property is defined, it's origin is
+ * different than that of the parent window's origin, or if
+ * the Origin-Agent-Cluster header is used by the underlying HTTP server,
+ * otherwise the script is executed synchronously.
  */
 export class IFrameWorker extends EventTarget implements Worker {
 
@@ -58,14 +61,20 @@ export class IFrameWorker extends EventTarget implements Worker {
    * Create a new worker from the given URL
    *
    * @param url - Worker script URL
+   * @param options - Worker script options
+   * @param options.src - IFrame src url
    */
-  public constructor(protected url: string) {
+  public constructor(protected url: string, { credentials, type, src }: WorkerOptions = {}) {
     super()
 
     /* Create iframe to host the worker script */
     const iframe = document.createElement("iframe")
+    if (credentials) iframe.referrerPolicy = credentials
+    if (src) iframe.src = src
     iframe.hidden = true
     document.body.appendChild(this.iframe = iframe)
+
+    const module = type === "module" ? " type=module" : ""
 
     /* Initialize runtime and worker script */
     this.w.document.open()
@@ -82,7 +91,7 @@ export class IFrameWorker extends EventTarget implements Worker {
               "}))" +
             "})" +
           "</script>" +
-          `<script src=${url}?${+Date.now()}></script>` +
+          `<script${module} src=${url}?${+Date.now()}></script>` +
         "</body>" +
       "</html>"
     )
