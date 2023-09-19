@@ -36,10 +36,10 @@ type IFrameWorkerOptions = WorkerOptions & {
  * This `WebWorker` shim is implemented on top of an `IFrameElement` to allow
  * workers in contexts when `XMLHTTPRequest` is not available, or blocked by the
  * browser, e.g. when using the `file://` protocol. This shim can provide
- * asynchronous workers, if the options.src property is defined, it's origin is
- * different than that of the parent window's origin, or if
- * the Origin-Agent-Cluster header is used by the underlying HTTP server,
- * otherwise the script is executed synchronously.
+ * asynchronous workers, if the url property is an HTML file which imports the
+ * setup script, it's origin is different than that of the parent window's
+ * origin, or if the Origin-Agent-Cluster header is used by the underlying HTTP
+ * server, otherwise the script is executed synchronously.
  */
 export class IFrameWorker extends EventTarget implements Worker {
 
