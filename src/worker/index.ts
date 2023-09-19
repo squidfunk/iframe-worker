@@ -23,7 +23,6 @@
 import { importScripts, postMessage } from "./runtime"
 
 type IFrameWorkerOptions = WorkerOptions & {
-  src?: string
   credentials?: ReferrerPolicy
 }
 
@@ -67,24 +66,21 @@ export class IFrameWorker extends EventTarget implements Worker {
    *
    * @param url - Worker script URL
    * @param options - Worker script options
-   * @param options.src - IFrame src url
    */
-  public constructor(protected url: string, { credentials, type, src }: IFrameWorkerOptions = {}) {
+  public constructor(protected url: string, { credentials, type }: IFrameWorkerOptions = {}) {
     super()
 
     /* Create iframe to host the worker script */
     const iframe = document.createElement("iframe")
     if (credentials) iframe.referrerPolicy = credentials
-    if (src) iframe.src = src
     iframe.hidden = true
     document.body.appendChild(this.iframe = iframe)
 
-    const module = type === "module" ? " type=module" : ""
-
     /* Initialize runtime and worker script */
-    this.w.document.open()
-    this.w.document.write(
-      "<html>" +
+    if (new URL(url).pathname.endsWith(".js")) {
+      this.w.document.open()
+      this.w.document.write(
+        "<html>" +
         "<body>" +
           "<script>" +
             `postMessage=${postMessage};` +
@@ -96,11 +92,14 @@ export class IFrameWorker extends EventTarget implements Worker {
               "}))" +
             "})" +
           "</script>" +
-          `<script${module} src=${url}?${+Date.now()}></script>` +
+          `<script${type === "module" ? " type=module" : ""} src=${url}?${+Date.now()}></script>` +
         "</body>" +
       "</html>"
-    )
-    this.w.document.close()
+      )
+      this.w.document.close()
+    } else {
+      iframe.src = url
+    }
 
     /* Register internal listeners and track iframe state */
     onmessage = this.m
