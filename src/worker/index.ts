@@ -22,6 +22,11 @@
 
 import { importScripts, postMessage } from "./runtime"
 
+type IFrameWorkerOptions = WorkerOptions & {
+  src?: string
+  credentials?: ReferrerPolicy
+}
+
 /* ----------------------------------------------------------------------------
  * Class
  * ------------------------------------------------------------------------- */
@@ -64,7 +69,7 @@ export class IFrameWorker extends EventTarget implements Worker {
    * @param options - Worker script options
    * @param options.src - IFrame src url
    */
-  public constructor(protected url: string, { credentials, type, src }: WorkerOptions = {}) {
+  public constructor(protected url: string, { credentials, type, src }: IFrameWorkerOptions = {}) {
     super()
 
     /* Create iframe to host the worker script */
