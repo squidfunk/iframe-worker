@@ -59,7 +59,7 @@ export class IFrameWorker extends EventTarget implements Worker {
    *
    * @param url - Worker script URL
    */
-  public constructor(protected url: string) {
+  public constructor(protected url: URL | string) {
     super()
 
     /* Create iframe to host the worker script */
@@ -115,7 +115,7 @@ export class IFrameWorker extends EventTarget implements Worker {
       .catch()
       .then(() => {
         this.w.dispatchEvent(
-          new MessageEvent("message", { data })
+          new MessageEvent("message", structuredClone({ data }))
         )
       })
   }
@@ -139,7 +139,6 @@ export class IFrameWorker extends EventTarget implements Worker {
    */
   protected m = (ev: MessageEvent): void => {
     if (ev.source === this.w) {
-      // ev.stopImmediatePropagation() // doesn't seem necessary
       this.dispatchEvent(new MessageEvent("message", { data: ev.data }))
       if (this.onmessage)
         this.onmessage(ev)
