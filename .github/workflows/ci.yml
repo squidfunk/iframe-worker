@@ -32,16 +32,16 @@ jobs:
     steps:
 
       # Limit clone depth to speed up build
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 5
 
       # Install Node runtime and dependencies
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v5
         with:
           node-version: 10.x
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v5
         id: cache-node
         with:
           path: node_modules
