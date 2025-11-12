@@ -1,3 +1,7 @@
+iframe-worker-1.0.4 (2025-11-12)
+
+  * Added missing structured clone when sending to iframe
+
 iframe-worker-1.0.3 (2023-02-08)
 
   * Improved implementation by extending EventTarget
