@@ -39,7 +39,7 @@ jobs:
       # Install Node runtime and dependencies
       - uses: actions/setup-node@v5
         with:
-          node-version: 10.x
+          node-version: "24"
 
       - uses: actions/cache@v4
         id: cache-node
@@ -82,7 +82,7 @@ jobs:
       # Install Node runtime and dependencies
       - uses: actions/setup-node@v5
         with:
-          node-version: 10.x
+          node-version: "24"
           registry-url: https://registry.npmjs.org
 
       - uses: actions/cache@v4
